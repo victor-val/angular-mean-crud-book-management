@@ -14,7 +14,7 @@ export class AddBookComponent implements OnInit {
     public formBuilder: FormBuilder,
     private router: Router,
     private ngZone: NgZone,
-    private crudService: BookService
+    private bookService: BookService
   ) { 
     this.bookForm = this.formBuilder.group({
       name: [''],
@@ -26,11 +26,11 @@ export class AddBookComponent implements OnInit {
   ngOnInit() { }
   
   onSubmit(): any {
-    this.crudService.addBook(this.bookForm.value)
+    this.bookService.addBook(this.bookForm.value)
     .subscribe({
       complete: () => {
         console.log('Data added successfully!')
-        this.ngZone.run(() => this.router.navigateByUrl('/book-list'))
+        this.ngZone.run(() => this.router.navigateByUrl('/books-list'))
       }, error: (err) => {
         console.log(err);
       }
