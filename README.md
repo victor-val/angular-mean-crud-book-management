@@ -1,5 +1,9 @@
 # AngularMeanCrudBookManagement
 
+Angular 13 CRUD Application with Node and REST API
+
+MEAN Stack (MongoDB, Express.js, Angular, Node.js)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.2.
 
 ## Development server
