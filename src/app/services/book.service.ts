@@ -7,12 +7,13 @@ import {
   HttpHeaders,
   HttpErrorResponse,
 } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+
 @Injectable({
   providedIn: 'root',
 })
 export class BookService {
-  // Node/Express API
-  REST_API: string = 'http://localhost:8000/api';
+
   // Http Header
   httpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
 
@@ -20,7 +21,7 @@ export class BookService {
   
   // Add
   addBook(data: Book): Observable<any> {
-    let API_URL = `${this.REST_API}/add-book`;
+    let API_URL = `${environment.REST_API}/add-book`;
     return this.httpClient
       .post(API_URL, data)
       .pipe(catchError(this.handleError));
@@ -28,12 +29,12 @@ export class BookService {
 
   // Get all objects
   getBooks() {
-    return this.httpClient.get(`${this.REST_API}`);
+    return this.httpClient.get(`${environment.REST_API}`);
   }
 
   // Get single object
   getBook(id: any): Observable<any> {
-    let API_URL = `${this.REST_API}/read-book/${id}`;
+    let API_URL = `${environment.REST_API}/read-book/${id}`;
     return this.httpClient.get(API_URL, { headers: this.httpHeaders }).pipe(
       map((res: any) => {
         return res || {};
@@ -44,7 +45,7 @@ export class BookService {
 
   // Update
   updateBook(id: any, data: any): Observable<any> {
-    let API_URL = `${this.REST_API}/update-book/${id}`;
+    let API_URL = `${environment.REST_API}/update-book/${id}`;
     return this.httpClient
       .put(API_URL, data, { headers: this.httpHeaders })
       .pipe(catchError(this.handleError));
@@ -52,7 +53,7 @@ export class BookService {
 
   // Delete
   deleteBook(id: any): Observable<any> {
-    let API_URL = `${this.REST_API}/delete-book/${id}`;
+    let API_URL = `${environment.REST_API}/delete-book/${id}`;
     return this.httpClient
       .delete(API_URL, { headers: this.httpHeaders })
       .pipe(catchError(this.handleError));
